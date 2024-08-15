@@ -1,0 +1,108 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "kestrel-task",
+    "version": "1.0.34"
+  },
+  "tauri": {
+    "allowlist": {
+      "path": {
+        "all": true
+      },
+      "all": true,
+      "shell": {
+        "all": true,
+        "open": true
+      },
+      "process": {
+        "relaunch": true
+      },
+      "http": {
+        "scope": ["http://**", "https://**"]
+      },
+      "dialog": {
+        "all": true,
+        "ask": true,
+        "confirm": true,
+        "message": true,
+        "open": true,
+        "save": true
+      },
+      "clipboard": {
+        "all": true,
+        "writeText": true,
+        "readText": true
+      },
+      "window": {
+        "all": true
+      }
+    },
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.tauri.build",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "category": "Utility",
+      "shortDescription": "微芒计划",
+      "longDescription": "微芒计划一款由tauri构建的待办效率管理工具",
+      "windows": {
+        "wix": {
+          "language": "zh-CN"
+        },
+        "nsis": {
+          "languages": ["SimpChinese", "English"],
+          "displayLanguageSelector": true
+        }
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://gitee.com/zhanhongzhu/zhanhongzhu/raw/master/update.json"
+      ],
+      "dialog": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDcyRjlGRUM5N0UxNDRDNzkKUldSNVRCUit5Zjc1Y2pxMk1tRG5uK0pMc3IyclFNL3lsYWw2OUtNc2lPbjB3UUZGNjIyamRsVzQK"
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "微芒计划",
+        "width": 1100,
+        "height": 680,
+        "minHeight": 600,
+        "minWidth": 900,
+        "visible": false
+      },
+      {
+        "width": 800,
+        "height": 500,
+        "minHeight": 500,
+        "minWidth": 800,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  }
+}

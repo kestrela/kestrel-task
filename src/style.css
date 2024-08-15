@@ -1,0 +1,472 @@
+:root {
+  font-family:'oldSong';
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.el-header {
+  height: 48px !important;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #faf8f8;
+}
+
+#app {
+  height: 100%;
+  overflow: hidden;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.bread-crumb {
+  font-size: 14px;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  padding: 7px 3px;
+  border-radius: 8px;
+  color: #585f5f;
+  border-bottom: 1px solid #eeeeee70;
+  background-color: rgba(230, 244, 230, 0.2);
+  font-size: 14px;
+  margin: 3px 0;
+  justify-content: center;
+  transition: all 0.5s ease 0s;
+}
+
+.bread-crumb:hover {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.4);
+  background: #d6e1f9;
+  color: #4c5353;
+}
+
+.active {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.4);
+  background: #d6e1f9;
+  color: #4c5353;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.page-one {
+  flex: auto !important;
+  -webkit-box-flex: auto !important;
+  -moz-box-flex: auto !important;
+  background-color: #ddd;
+}
+
+.page-title {
+  color: #007fe7;
+  padding: 5px;
+  background-color: rgba(230, 244, 230, 0.69);
+  border-radius: 5px;
+  margin: 5px 0;
+  width: 100% !important;
+  font-size: 12px !important;
+}
+
+.verson {
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.footers {
+  color: #007fe797;
+  margin-left: 5px;
+  font-size: 6px;
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  width: 198px;
+  letter-spacing: -1px;
+}
+
+.page {
+  position: relative !important;
+}
+
+.el-dialog {
+  border-radius: 12px !important;
+  overflow: hidden;
+  max-width: 960px;
+  max-height: 60%;
+  background-color: #ffffffe2 !important;
+  backdrop-filter: blur(180px) saturate(1.5);
+  filter: none;
+  box-shadow: 3px 3px 20px 3px #22222230 !important;
+  border: 1.5px solid #6f6f6f30;
+}
+
+.body-content {
+  height: 55vh;
+}
+
+.el-dialog .el-dialog__header {
+  padding: 8px 12px !important;
+}
+
+.my-dialog {
+  background-color: #eaeaea !important;
+  max-width: 80vw;
+  background: #f8f8f8 no-repeat fixed center !important;
+  background-size: cover;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-color: unset;
+  box-shadow: 3px 3px 20px 3px #ffffffe2;
+  border:2px solid #eee;
+  padding-top: 3px !important;
+  padding-left:5px!important;
+  padding-right:5px!important;
+}
+
+.my-dialog .el-dialog__header{
+  padding-left:10px!important;
+}
+
+.my-dialog-title {
+  font-weight: 550;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color:#000;
+}
+
+.el-dialog .el-dialog__body {
+  padding: 0 0 12px 12px;
+}
+
+.el-dialog .el-dialog__headerbtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s all;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+  border:1px solid transparent;
+}
+.el-dialog__headerbtn .el-dialog__close {
+  color: #000 !important;
+}
+
+.el-dialog__headerbtn:hover {
+  background: #d80d1c;
+}
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: #fff !important;
+}
+
+.el-dialog .el-dialog__footer {
+  display: none !important;
+}
+
+.el-overlay {
+  background-color: #00000070 !important;
+}
+
+.color999 {
+  color: #999;
+}
+.el-input__wrapper .is-focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.rightss,
+.page-col2-content,
+.habits {
+  flex-grow: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 0 0 10px 0;
+  padding: 8px;
+  overflow-y: auto;
+  transition-delay: 300ms;
+  box-shadow: 0 1.5px 2px none, 0px 1px 6px none;
+}
+
+.el-card{
+  margin: 5px;
+  box-shadow: 0 1px 2px #99999947!important;
+  background: #fff!important;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 80ms, transform 400ms cubic-bezier(0.14, 1.02, 0.17, 0.03) !important;
+}
+
+.el-card:hover{
+  background:#efefef65;
+}
+.el-calendar{
+  padding: 12px;
+}
+
+.el-calendar-table td{
+  border-radius: 12px;
+}
+.el-calendar-table td:hover{
+  border-radius: 12px;
+}
+.is-today,
+.is-selected{
+  background-color: #efefef65 !important;
+}
+.el-calendar-day:hover{
+  background-color: #efefef65 !important;
+}
+
+.el-button{
+  min-width: 60px;
+  color: #fff!important;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 8px!important;
+  padding: 7px 10px;
+  transition: 100ms;
+  background: #008c8e!important;
+  color:#000;
+  overflow: hidden;
+}
+.el-button:focus,
+.el-button:active,
+.el-button:hover{
+  background: #008c8e!important;
+}
+.el-button--reset{
+  background: #008c8e!important;
+}
+.el-button--reset:focus,
+.el-button--reset:active,
+.el-button--reset:hover{
+  color:#ccc!important;
+  background: #008c8e!important;
+}
+
+.el-message-box{
+  background-color: #eaeaea !important;
+  background: #ffffff!important;
+  background-size: cover;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-color: unset;
+  box-shadow: 3px 3px 20px 3px #ffffffe2;
+  border:none!important;
+}
+
+.el-message-box__headerbtn{
+    
+}
+
+
+.el-message-box__headerbtn {
+  display: none;
+}
+
+.el-message{
+  background-color: #fff !important;
+  max-width: 80vw;
+  background: #fff!important;
+  background-size: cover;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-color: unset;
+  color: #000;
+  font-weight:bold;
+}
+.el-message svg,
+.el-message p{
+  color: #000!important;
+}
+
+.copy-code-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #c1c1c1;
+}
+
+.chat-item {
+  position: relative;
+  padding: 0 0 0 5px;
+  overflow: hidden;
+}
+.chat-item .content {
+  min-height: 20px;
+  word-break: break-word;
+  padding: 6px 10px;
+  color: #374151;
+  font-size: 14px;
+  border-radius: 5px;
+  overflow: auto;
+}
+.chat-item .content a {
+  color: #20a0ff;
+}
+.chat-item .content img {
+  max-width: 600px;
+  border-radius: 10px;
+}
+.chat-item .content p {
+  line-height: 1.5;
+}
+.chat-item .content p code {
+  color: #374151;
+  background-color: #e7e7e8;
+  padding: 0 3px;
+  border-radius: 5px;
+}
+.chat-item .content p:last-child {
+  margin-bottom: 0;
+}
+.chat-item .content p:first-child {
+  margin-top: 0;
+}
+.chat-item .content .code-container {
+  position: relative;
+}
+.chat-item .content .code-container .hljs {
+  border-radius: 10px;
+  line-height: 1.5;
+}
+.chat-item .content .code-container .copy-code-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #c1c1c1;
+}
+.chat-item .content .code-container .copy-code-btn:hover {
+  color: #20a0ff;
+}
+.chat-item .content .lang-name {
+  position: absolute;
+  right: 10px;
+  bottom: 50px;
+  padding: 2px 6px 4px 6px;
+  background-color: #444444;
+  border-radius: 10px;
+  color: #00e0e0;
+}
+.chat-item .content table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+  border: 1px solid #dee2e6;
+  background-color: #ffffff;
+}
+.chat-item .content table thead th {
+  border: 1px solid #dee2e6;
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  padding: 10px;
+}
+.chat-item .content table td {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+.chat-item .content blockquote {
+  margin: 0;
+  background-color: #ebfffe;
+  padding: 0.8rem 1.5rem;
+  border-left: 0.5rem solid;
+  border-color: #026863;
+  color: #2c3e50;
+}
+.chat-item .bar {
+  padding: 10px;
+}
+.chat-item .bar .bar-item {
+  background-color: #e7e7e8;
+  color: #888;
+  padding: 3px 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.chat-item .bar .bar-item .el-icon {
+  position: relative;
+  top: 2px;
+}
+.chat-item .bar .el-button {
+  height: 20px;
+  padding: 5px 2px;
+}
+
+.el-message-box__status svg{
+  display: none;
+}
+.el-input__wrapper,
+.el-select__wrapper,
+.el-textarea textarea{
+  border:1px solid #d0d0d1!important;
+  box-shadow: none !important;
+}
+.el-input__wrapper:hover,
+.el-select__wrapper:hover,
+.el-textarea textarea:hover{
+  box-shadow: none!important;
+  border:1px solid #d0d0d1!important;
+}
+.is-hovering,
+.is-focused,
+.is-focus{
+  box-shadow: none!important;
+}
+
+
+.el-select-dropdown__item,
+.el-select-dropdown__item.hover{
+  background-color: #ffffff;
+}
+.el-button--reset,
+.reset{
+  background: #eee !important;
+}
+
+.el-button--reset:hover,
+.reset:hover{
+  background: #888 !important;
+}
+.el-step__head.is-process,
+.el-step__head.is-wait,
+.el-select__caret{
+  color:#000!important;
+}
+.el-step__head.is-process,
+.el-step__head.is-wait{
+  border-color:#000!important;
+}
+
+
+.el-step__line{
+  background-color: #000!important;
+}

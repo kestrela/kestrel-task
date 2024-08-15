@@ -1,0 +1,86 @@
+$--theme-bg: #6b3e26;
+$--theme-bgFocus: #7e4f36;
+$--theme-primaryClear: #dca10f;
+$--theme-primaryDull: #b98900;
+$--theme-primaryVisible: #614a0a;
+$--theme-accentClear: #c85a17;
+$--theme-accentDull: #ffeea4;
+$--theme-clear: #ffffff;
+$--theme-dull: #bababa;
+$--theme-duller: #9c694f;
+$--theme-white:#fff;
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 16px;
+}
+
+/*定义滚动条轨道*/
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  background-color: var($--theme-bg);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border-color: transparent;
+  border-width: 4px;
+  border-style: solid;
+  background-clip: padding-box;
+
+  &:hover {
+    background-color: #b6b7b9;
+    border-color: #b6b7b9;
+  }
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fffefb;
+}
+
+.page {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fffefb;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.aside {
+  padding: 3px 3px;
+  height: 100%;
+  width: 60px;
+  padding: 8px 5px;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  border-right: 1px solid #eeeeee25;
+}
+
+.Main {
+  background-color: #eaeaea !important;
+  background: #ffffff no-repeat fixed center !important;
+  background-size: cover;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background-color: unset;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 20px;
+  height: 100%;
+  // margin-top:30px;
+}
+.wrapper {
+  background: transparent!important;
+}
+
