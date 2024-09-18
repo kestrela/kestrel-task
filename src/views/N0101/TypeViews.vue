@@ -16,9 +16,23 @@
           <path d="M605.3 434.1c0 5.7-2.3 10.8-6.1 14.6-3.7 3.8-8.9 6.1-14.6 6.1H519c3.2-17 14-32.2 30.8-40.5 0.6-0.3 1.3-0.6 2-0.8h32.9c11.3 0 20.6 9.2 20.6 20.6z" fill="#FFEB97" p-id="17277"></path>
         </svg>
         <span class="text">{{ item.name }}</span>
+        <svg @click.stop="editClick(item)"  t="1707184404581" class="icon edit"
+          viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7157" width="200" height="200">
+          <path d="M763.744 240.576l-67.84-67.904-317.76 317.76-10.784 78.624 78.656-10.752z" fill="#3671FD"
+            opacity=".2" p-id="7158"></path>
+          <path
+            d="M787.904 198.976a64 64 0 0 1 0 90.496l-302.592 302.624a64 64 0 0 1-36.576 18.144l-115.2 15.776A16 16 0 0 1 315.52 608l15.776-115.2a64 64 0 0 1 18.144-36.576l302.624-302.592a64 64 0 0 1 90.496 0z m-45.248 45.152l-45.248-45.248-302.624 302.592-7.168 52.48 52.448-7.2z"
+            fill="#3671FD" p-id="7159"></path>
+          <path
+            d="M416.512 154.432a32 32 0 0 1 3.744 63.776l-3.744 0.224h-160a64 64 0 0 0-63.84 59.2l-0.16 4.8v480a64 64 0 0 0 59.2 63.84l4.8 0.16h512a64 64 0 0 0 63.84-59.2l0.16-4.8v-288a32 32 0 0 1 63.776-3.744l0.224 3.744v288a128 128 0 0 1-121.6 127.84l-6.4 0.16h-512a128 128 0 0 1-127.84-121.6l-0.16-6.4v-480a128 128 0 0 1 121.6-127.84l6.4-0.16z"
+            fill="#3671FD" p-id="7160"></path>
+          <path
+            d="M320.512 666.432h384a28.288 28.288 0 0 1 32 32 28.288 28.288 0 0 1-32 32h-384a28.288 28.288 0 0 1-32-32 28.288 28.288 0 0 1 32-32z"
+            fill="#FE9C23" p-id="7161"></path>
+        </svg>
       </div>
     </div>
-    <TypesDialog v-model="isTagVisible" @search="getOptions" />
+    <TypesDialog v-model="isTagVisible" @search="getOptions" :detail="detail"/>
   </div>
 
 </template>
@@ -29,7 +43,9 @@ import TypesDialog from './TypesDialog.vue'
 import {  getCategory} from "@/api/index.js";
 
 const isTagVisible = ref(false)
+const detail = ref({})
 const addClick = () => {
+  detail.value = {}
   isTagVisible.value = true
 }
 
@@ -41,6 +57,11 @@ const emit = defineEmits(['search'])
 const tagClick = (name)=>{
   name1.value = name
   emit('search',name)
+}
+
+const editClick = (item)=>{
+  detail.value = item
+  isTagVisible.value = true
 }
 
 const tags = ref([])
@@ -143,5 +164,14 @@ const getOptions = () => {
 
 .page-item-label{
   font-weight: bold;
+}
+
+.edit{
+  display: none!important;
+  transition: all 0.8s;
+}
+.page-item1:hover .edit{
+  display: inline-block!important;
+  transition: all 0.8s;
 }
 </style>

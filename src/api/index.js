@@ -451,6 +451,6 @@ export function publicConfig(fn = () => { }) {
           lo: lo,
           lc: lc
       }
-      return result
+      fn(result)
   })
 }

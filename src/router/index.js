@@ -28,7 +28,7 @@ export const asyncRoutes = [
                 component: () => import('@/views/N0102/index.vue'),
                 meta: {
                     title: '日历',
-                    icon: '2',
+                    icon: '99',
                     noCache: true,
                     affix: true
                 }
@@ -61,7 +61,7 @@ export const asyncRoutes = [
                 component: () => import('@/views/N0105/index.vue'),
                 meta: {
                     title: '习惯',
-                    icon: '5',
+                    icon: '4',
                     noCache: true,
                     affix: true
                 }
@@ -72,7 +72,7 @@ export const asyncRoutes = [
                 component: () => import('@/views/N0107/index.vue'),
                 meta: {
                     title: '提醒',
-                    icon: '7',
+                    icon: '11',
                     noCache: true,
                     affix: true
                 }
@@ -93,7 +93,7 @@ export const asyncRoutes = [
 ]
 
 const router = createRouter({
-    history: createWebHashHistory('./'),
+    history: createWebHashHistory(),
     routes: asyncRoutes.concat(baseRoute),
     scrollBehavior: () => ({ left: 0, top: 0 })
 })

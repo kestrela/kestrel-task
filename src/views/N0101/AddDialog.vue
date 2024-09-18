@@ -1,5 +1,5 @@
 <template>
-  <Dialog v-model="visible" :dialogTitle="dialogTitle" @closed="closed" width="50vw">
+  <Dialog v-model="visible" :dialogTitle="dialogTitle" @closed="closed" width="60vw">
 
     <el-form :model="form" label-width="75px">
       <el-row class="wrapper">
@@ -9,9 +9,10 @@
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="紧急程度">
-            <el-select allow-create default-first-option :reserve-keyword="false" filterable v-model="state.dataForm.priority" placeholder="请选择紧急程度">
-              <el-option v-for="(item,index) in state.options" :key="index" :label="item.label" :value="item.value" />
+          <el-form-item label="重要程度">
+            <el-select allow-create default-first-option :reserve-keyword="false" filterable
+              v-model="state.dataForm.priority" placeholder="请选择">
+              <el-option v-for="(item, index) in state.options" :key="index" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
         </el-col>
@@ -22,7 +23,13 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="24">
+        <el-col :span="12">
+          <el-form-item label="截止日期">
+            <el-date-picker v-model="state.dataForm.endTime" type="datetime" placeholder="请选择"
+              format="YYYY-MM-DD HH:mm:ss" date-format="YYYY-MM-DD" time-format="HH:mm:ss" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
           <el-form-item label="标签">
             <el-select allow-create default-first-option :reserve-keyword="false" filterable v-model="state.dataForm.tags" placeholder="请选择紧急程度">
               <el-option v-for="(item,index) in state.options2" :key="index" :label="item.name" :value="item.name" />
@@ -159,7 +166,6 @@ const onSubmit = () => {
   if (params.endTime) {
     params.endTime = dayjs(params.endTime).format('YYYY-MM-DD HH:mm:ss')
   }
-
   if (props.detail && props.detail.id) {
     params.id = props.detail.id
   }

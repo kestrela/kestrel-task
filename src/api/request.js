@@ -15,6 +15,7 @@ export function request(config) {
         resolve(res.data.data);
       })
       .catch((err) => {
+        console.log(err)
         reject(err);
       });
   });

@@ -170,26 +170,39 @@ const delayClick = (row) => {
   })
 }
 
-const getTimer = (item) => {
-  let ats = item.updatedAt || item.createdAt
-  let day = dayjs(ats).format('YYYY-MM-DD')
-  let now = dayjs(new Date()).format('YYYY-MM-DD')
-  let extra = dayjs(now).diff(day, 'days')
-
-  let type =
-    extra >= 30
-      ? 'info'
-      : extra >= 7
-        ? 'danger'
-        : extra >= 3
-          ? 'warning'
-          : extra >= 1
-            ? 'warning'
-            : false
-  return {
-    type,
-    extra: extra && extra >= 1 ? `逾${extra}天` : false,
+function getTimer(item) {
+  let endTime = item.endTime || item.updatedAt || item.createdAt
+  const params = {
+    type: '',
+    extra: '',
   }
+  if (!endTime) {
+    return params
+  }
+  const end = dayjs(endTime);
+  const now = dayjs();
+
+  const diff = end.diff(now, 'hour');
+  const diffDays = end.diff(now, 'day');
+  const diffMonths = end.diff(now, 'month');
+  const diffYears = end.diff(now, 'year');
+
+  if (Math.abs(diffYears) >= 1) {
+    params.extra = `${diffYears > 0 ? '剩' : '逾'}${Math.abs(diffYears)}年${(end.month() + 1)}个月`;
+    params.type = diffYears > 0 ? 'success' : 'danger'
+  } else if (Math.abs(diffMonths) >= 1) {
+    params.extra = `${diffMonths > 0 ? '剩' : '逾'}${Math.abs(diffMonths)}月${end.date()}日`;
+    params.type = diffMonths > 0 ? 'success' : 'danger'
+  } else if (Math.abs(diffDays) >= 1) {
+    const remainingHours = diff % 24;
+    console.log(remainingHours)
+    params.extra = `${diffDays > 0 ? '剩' : '逾'}${Math.abs(diffDays)}日${Math.abs(remainingHours)}小时`;
+    params.type = diffDays > 0 ? 'success' : 'danger'
+  } else if (Math.abs(diff) >= 1) {
+    params.extra = `${diff > 0 ? '剩' : '逾'}${Math.abs(diff)}小时`;
+    params.type = diff > 0 ? 'warning' : 'warning'
+  }
+  return params
 }
 
 const getTags1 = (key) => {
@@ -270,7 +283,7 @@ const state = reactive({
 })
 
 const deleteClick = (row) => {
-  row.status = '8'
+  row.status = row.status && row.status === '8' ? '6' : '8'
   switchChange(row, false)
 }
 
@@ -597,8 +610,8 @@ onMounted(() => {
 }
 
 .page-col2-input {
-  height: 38px;
-  line-height: 38px;
+  height: 32px;
+  line-height: 32px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   overflow: hidden;

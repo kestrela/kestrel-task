@@ -137,8 +137,8 @@ onMounted(() => {
 }
 
 .page-col2-input {
-  height: 36px;
-  line-height: 36px;
+  height: 32px;
+  line-height: 32px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   overflow: hidden;

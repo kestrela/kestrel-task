@@ -1,17 +1,22 @@
 <template>
-  <el-form label-position="top" ref="ruleForm" :model="formState" :rules="rules" label-width="0" status-icon class="login-ruleForm">
+  <el-form label-position="top" ref="ruleForm" :model="formState" :rules="rules" label-width="0" status-icon
+    class="login-ruleForm">
     <el-form-item prop="account">
-      <el-input class="input-s" ref="account" v-model="formState.account" name="account" placeholder="请输入账号" :clearable="true" tabindex="1" type="text" maxlength="100" autocomplete="off" />
+      <el-input class="input-s" autocomplete="off" ref="account" v-model="formState.account" name="account"
+        placeholder="请输入账号" :clearable="true" tabindex="1" type="text" maxlength="100" />
     </el-form-item>
 
     <el-form-item prop="password">
-      <el-input class="input-s" ref="password" v-model="formState.password" show-password name="password" placeholder="请输入密码" :clearable="true" tabindex="2" maxlength="16" type="password" autocomplete="off" @keyup.enter="loginHandle" />
+      <el-input class="input-s" autocomplete="off" ref="password" v-model="formState.password" show-password
+        name="password" placeholder="请输入密码" :clearable="true" tabindex="2" maxlength="16" type="password"
+        @keyup.enter="loginHandle" />
     </el-form-item>
 
     <el-form-item v-if="showCaptcha" prop="captcha">
       <div style="position: relative">
         <div class="code-inp">
-          <el-input ref="captcha" v-model="formState.captcha" type="text" name="captcha" placeholder="请输入校验码" :clearable="true" tabindex="3" maxlength="6" autocomplete="off" @keyup.enter="loginHandle" />
+          <el-input ref="captcha" v-model="formState.captcha" type="text" name="captcha" placeholder="请输入校验码"
+            :clearable="true" tabindex="3" maxlength="6" autocomplete="off" @keyup.enter="loginHandle" />
         </div>
         <div class="code">
           <div v-html="captchaImg" ref="captchaImage" alt="" @click="updateImage" />
@@ -19,10 +24,12 @@
       </div>
     </el-form-item>
     <el-form-item style="margin-bottom: 0">
-      <el-button v-if="isLogin" class="h80 login-btn" :loading="loading" type="primary" size="large" style="width: 100%" @click.prevent="loginHandle">
+      <el-button v-if="isLogin" class="h80 login-btn" :loading="loading" type="primary" size="large" style="width: 100%"
+        @click.prevent="loginHandle">
         快速登录
       </el-button>
-      <el-button v-else class="h80 login-btn" :loading="loading" type="primary" size="large" style="width: 100%" @click.prevent="loginHandle">
+      <el-button v-else class="h80 login-btn" :loading="loading" type="primary" size="large" style="width: 100%"
+        @click.prevent="loginHandle">
         快速注册
       </el-button>
       <div class="register" v-if="isLogin" @click="goRegister" ref="sendSms"><span class="color-999">还没有账号？</span>去注册
@@ -34,7 +41,7 @@
 </template>
 
 <script setup>
-import { login, register, insertLoginLogs ,publicConfig} from '@/api/index.js'
+import { login, register, insertLoginLogs, publicConfig } from '@/api/index.js'
 import { getCaptcha } from '@/api/index.js'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -152,15 +159,16 @@ function loginHandle() {
             params1.loginType = 'windows'
             login(params1)
               .then(async (res) => {
-                console.log('++',res)
+                console.log('++', res)
                 ElMessage.success('成功')
                 const { token } = res
                 const userInfo = res
                 userInfo.id = res.token
                 setItem('userInfo', JSON.stringify(userInfo))
                 setItem('itoken', token)
-                const result = await publicConfig();
-                await insertLoginLogs({ ...result, loginType: 'windows' })
+                await publicConfig((result) => {
+                  insertLoginLogs({ ...result, loginType: 'windows',nickname })
+                });
                 router.push('/')
                 await appWindow.setMaximizable(true)
                 let permissionGranted = await isPermissionGranted()

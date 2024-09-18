@@ -2,15 +2,12 @@
   <div class="page-col2-content">
     <el-row :gutter="12" class="chart-row">
       <el-col :span="24" class="chart-statics">
-        <div :class="['chart-card',`frind-card1`]" v-for="(item, key) in cardList" :key="key">
+        <div :class="['chart-card', `frind-card${key + 1}`]" v-for="(item, key) in cardList" :key="key">
           <span class="span1">{{ item.title }}</span>
           <span>{{ item.end }}</span>
         </div>
       </el-col>
-      <el-col :span="6" class="chart-col">
-        <Activity />
-      </el-col>
-      <el-col :span="18" class="chart-col" style="margin-top:20px;">
+      <el-col :span="24" class="chart-col" style="margin-top:20px;">
         <BarChart />
       </el-col>
       <el-col :span="24" class="chart-col">
@@ -160,26 +157,27 @@ onMounted(() => {
     cursor: pointer;
     transition: 0.5s all;
 
-    &:hover{
-      background: #e9eded;
+    &:hover {
+      transform: scale(1.04);
     }
 
     span {
       display: block;
       text-align: center;
       font-weight: bold;
-      color:#666;
+      color: #fff;
     }
 
-    .span1{
-      font-weight: normal; 
-      color:#999;
-      font-size:14px;
+    .span1 {
+      font-weight: normal;
+      color: #fff;
+      font-size: 14px;
     }
   }
 }
+
 .frind-card1 {
-  background-color: #f8f8f8;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
 }
 
 .frind-card2 {
@@ -217,5 +215,4 @@ onMounted(() => {
 .frind-card10 {
   background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
 }
-
 </style>
