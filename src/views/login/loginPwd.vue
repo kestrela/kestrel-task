@@ -159,7 +159,6 @@ function loginHandle() {
             params1.loginType = 'windows'
             login(params1)
               .then(async (res) => {
-                console.log('++', res)
                 ElMessage.success('成功')
                 const { token } = res
                 const userInfo = res

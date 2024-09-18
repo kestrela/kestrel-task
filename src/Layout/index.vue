@@ -98,7 +98,7 @@
 
     <Settings v-model="isConfigures" dialogTitle="系统设置" />
 
-    <UserInfo v-model="isBaseVisible" @upUser="getUsers" />
+    <UserInfo v-model="isBaseVisible" @upUser="getUserAvater" />
 
     <Suggestion v-model="issgVisible" />
 
@@ -169,26 +169,18 @@ const authorClick = () => {
 const imageUrl = ref("");
 const getUserAvater = () => {
   let userInfo = localStorage.getItem("userInfo");
+
   if (userInfo) {
     userInfo = JSON.parse(userInfo);
   }
   if (userInfo.value) {
     let users = JSON.parse(userInfo.value);
-    imageUrl.value = users.imageUrl;
+    imageUrl.value = users.avater;
   }
 };
 
-const getUsers = () => {
-  getUser({}).then(res => {
-    if (res && res.avater) {
-      imageUrl.value = res.avater || ''
-    }
-  })
-}
-
 onMounted(async () => {
-  await getUsers()
-  // await getUserAvater();
+  await getUserAvater()
 });
 
 const state = reactive({

@@ -1,6 +1,6 @@
 <template>
   <div class="page-row1">
-    <el-col class="page-col2" v-resize="onResize">
+    <el-col class="page-col2">
       <el-input v-if="!['7', '8', '9'].includes(state.status)" autocomplete autofocus :rows="3" minlength="2"
         show-word-limit maxlength="280" resize="none" :autosize="{ minRows: 2, maxRows: 8 }" type="textarea"
         v-model="conetent" @keydown.enter="enterClick" placeholder="现在的想法是...回车即可创建" class="page-col2-input">

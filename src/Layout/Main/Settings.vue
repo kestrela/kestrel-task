@@ -10,7 +10,7 @@
           </span>
         </div>
       </div>
-      <el-col class="page-col2" v-resize="onResize">
+      <el-col class="page-col2">
         <div class="page-col2-content">
           <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
           <div :class="['page-col2-item']">

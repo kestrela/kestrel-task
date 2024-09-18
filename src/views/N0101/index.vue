@@ -16,7 +16,7 @@
         <TypeViews @search="searchType" />
       </div>
     </Transition>
-    <el-col class="page-col2" v-resize="onResize" :class="[['9'].includes(state.status) ? 'page-cols' : '']">
+    <el-col class="page-col2" :class="[['9'].includes(state.status) ? 'page-cols' : '']">
       <span class="page-col2-title">
         <span class="aaaa">
           <img :src="close" class="closes" @click="collapseClick" />
@@ -195,7 +195,6 @@ function getTimer(item) {
     params.type = diffMonths > 0 ? 'success' : 'danger'
   } else if (Math.abs(diffDays) >= 1) {
     const remainingHours = diff % 24;
-    console.log(remainingHours)
     params.extra = `${diffDays > 0 ? '剩' : '逾'}${Math.abs(diffDays)}日${Math.abs(remainingHours)}小时`;
     params.type = diffDays > 0 ? 'success' : 'danger'
   } else if (Math.abs(diff) >= 1) {
@@ -847,6 +846,7 @@ onMounted(() => {
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
+    flex-shrink: 0;
 
     &:hover {
       background: #ffffff;
@@ -911,7 +911,7 @@ svg {
   height: 18px;
   cursor: pointer;
   border-radius: 5px;
-
+  flex-shrink: 0;
   &:hover {
     background: #ffffff;
   }

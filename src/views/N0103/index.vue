@@ -66,7 +66,6 @@ const selectChange = (v) => {
 }
 
 const deleteClick = (row) => {
-  console.log(row)
   ElMessageBox.confirm('确认删除该条数据吗？', '', {
     confirmButtonText: '确认',
     type: 'warning',

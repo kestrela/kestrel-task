@@ -1,24 +1,51 @@
 <template>
-  <Dialog v-model="visible" @closed="closed" height="250px" width="400px">
+  <Dialog v-model="visible" @closed="closed" height="200px" width="300px">
     <div class="page-row">
-      <el-upload ref="uploadRef" :http-request="httpRequest" class="avatar-uploader" :auto-upload="false"
-        :show-file-list="false" :on-change="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+      <el-upload
+        ref="uploadRef"
+        accept="image/*"
+        :http-request="httpRequest"
+        class="avatar-uploader"
+        :auto-upload="false"
+        :show-file-list="false"
+        :on-change="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"
+      >
         <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-        <svg v-else class="avatar" viewBox="0,0,257,344" xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg
+          v-else
+          class="avatar"
+          viewBox="0,0,257,344"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
           <defs>
             <clipPath id="user-clip1">
               <rect x="382" y="195" width="257" height="344"></rect>
             </clipPath>
-            <linearGradient x1="351.462" y1="233.56" x2="669.496" y2="500.422" gradientUnits="userSpaceOnUse"
-              spreadMethod="reflect" id="user-fill3">
+            <linearGradient
+              x1="351.462"
+              y1="233.56"
+              x2="669.496"
+              y2="500.422"
+              gradientUnits="userSpaceOnUse"
+              spreadMethod="reflect"
+              id="user-fill3"
+            >
               <stop offset="0" stop-color="#A964C8"></stop>
               <stop offset="0.35" stop-color="#A964C8"></stop>
               <stop offset="0.87" stop-color="#2D8AD5"></stop>
               <stop offset="1" stop-color="#2D8AD5"></stop>
             </linearGradient>
-            <linearGradient x1="351.462" y1="233.56" x2="669.496" y2="500.422" gradientUnits="userSpaceOnUse"
-              spreadMethod="reflect" id="user-fill4">
+            <linearGradient
+              x1="351.462"
+              y1="233.56"
+              x2="669.496"
+              y2="500.422"
+              gradientUnits="userSpaceOnUse"
+              spreadMethod="reflect"
+              id="user-fill4"
+            >
               <stop offset="0" stop-color="#A964C8"></stop>
               <stop offset="0.35" stop-color="#A964C8"></stop>
               <stop offset="0.87" stop-color="#2D8AD5"></stop>
@@ -28,89 +55,93 @@
           <g clip-path="url(#user-clip1)" transform="translate(-382 -195)">
             <path
               d="M637.755 433.872C642.215 515.221 579.577 537.983 508.011 537.983 436.444 537.983 376.676 507.833 383.513 437.11 383.109 425.234 389.59 414.133 398.634 409.891 413.82 402.768 444.753 402.936 507.484 402.997 570.214 403.058 609.164 402.279 621.521 407.947 633.878 413.614 638.011 424.609 637.755 433.872Z"
-              fill="url(#user-fill3)" fill-rule="evenodd"></path>
+              fill="url(#user-fill3)"
+              fill-rule="evenodd"
+            ></path>
             <path
               d="M422 285C422 235.847 461.623 196 510.5 196 559.377 196 599 235.847 599 285 599 334.153 559.377 374 510.5 374 461.623 374 422 334.153 422 285Z"
-              fill="url(#user-fill4)" fill-rule="evenodd"></path>
+              fill="url(#user-fill4)"
+              fill-rule="evenodd"
+            ></path>
           </g>
         </svg>
       </el-upload>
     </div>
-    <el-input class="names" v-model="userName" placeholder="姓名" />
+    <!-- <el-input class="names" v-model="userName" placeholder="姓名" /> -->
     <el-col :span="24" class="n-col n-footer">
-      <el-button type="primary" style="width:140px;" @click="saveUserInfo">修改</el-button>
+      <el-button type="primary" style="width: 140px" @click="saveUserInfo"
+        >修改</el-button
+      >
     </el-col>
   </Dialog>
 </template>
 
 <script setup>
-import { Plus } from '@element-plus/icons-vue'
-import { onMounted, reactive, ref, nextTick, computed } from 'vue'
-import { getVersion } from '@tauri-apps/api/app'
-import { ElMessage } from 'element-plus'
-import { updateUser, getUser } from '@/api/index.js'
-
+import { Plus } from "@element-plus/icons-vue";
+import { onMounted, reactive, ref, nextTick, computed } from "vue";
+import { getVersion } from "@tauri-apps/api/app";
+import { ElMessage } from "element-plus";
+import { updateUser, getUser } from "@/api/index.js";
 
 const props = defineProps({
   modelValue: {
     type: Boolean,
-    default: false
+    default: false,
   },
   title: {
     type: String,
-    default: '设置头像',
+    default: "设置头像",
   },
-})
-const haveFile = ref(null)
-const visible = computed(() => props.modelValue)
-const emit = defineEmits(['update:modelValue', 'upUser'])
+});
+const haveFile = ref(null);
+const visible = computed(() => props.modelValue);
+const emit = defineEmits(["update:modelValue", "upUser"]);
 const closed = () => {
-  haveFile.value = null
-  emit('update:modelValue', false)
-}
-const fileName = ref('')
-const userName = ref('微芒计划')
-const imageUrl = ref('')
+  haveFile.value = null;
+  emit("update:modelValue", false);
+};
+const fileName = ref("");
+const userName = ref("微芒计划");
+const imageUrl = ref("");
 
 const getUserInfoId = () => {
-  let userInfo = localStorage.getItem('userInfo')
-  let id = ''
+  let userInfo = localStorage.getItem("userInfo");
+  let id = "";
   if (userInfo) {
-    userInfo = JSON.parse(userInfo)
+    userInfo = JSON.parse(userInfo);
   }
   if (userInfo.value) {
-    return JSON.parse(userInfo.value)
+    return JSON.parse(userInfo.value);
   }
-  return {}
-}
+  return {};
+};
 const setItem = (key, value, expires = 2592000000) => {
-  let count = new Date().getTime() + expires
+  let count = new Date().getTime() + expires;
   const obj = {
     value, // 需要缓存的数据
     expires: count, // 缓存有效期，毫秒为单位
-  }
-  localStorage.setItem(key, JSON.stringify(obj))
-}
+  };
+  localStorage.setItem(key, JSON.stringify(obj));
+};
 
 const updateImgUrl = (userInfo) => {
-  setItem('userInfo', JSON.stringify(userInfo))
-}
+  setItem("userInfo", JSON.stringify(userInfo));
+};
 
 const updateUserInfo = (params1) => {
-  params1.avater = imageUrl.value
-  params1.name = params1.userName
-  params1.type = '1'
+  params1.avater = imageUrl.value;
+  params1.name = params1.userName;
+  params1.type = "1";
   updateUser(params1).then((res) => {
-    ElMessage.success('更新成功')
-    updateImgUrl(params1)
-    closed()
+    ElMessage.success("更新成功");
+    updateImgUrl(params1);
+    closed();
     let timer = setTimeout(() => {
-      emit('upUser')
-      clearTimeout(timer)
-    }, 500)
-  })
-
-}
+      emit("upUser");
+      clearTimeout(timer);
+    }, 500);
+  });
+};
 
 const getItem = (key) => {
   const value = localStorage.getItem(key);
@@ -125,52 +156,70 @@ const getItem = (key) => {
   return obj.value;
 };
 
-const uploadRef = ref(null)
+const uploadRef = ref(null);
 const saveUserInfo = () => {
-  let params1 = getUserInfoId()
-  params1.name = userName.value
-  updateUserInfo(params1)
-}
+  let params1 = getUserInfoId();
+  params1.name = userName.value;
+  // updateUserInfo(params1);
+};
 
 const httpRequest = (file) => {
-  const formData = new FormData()
-  formData.append('file', file)
-  const name = new Date().getTime()
+  const formData = new FormData();
+  formData.append("file", file);
+  const name = new Date().getTime();
   const params = {
     name,
     file: file.file,
-  }
-}
+  };
+};
 
-const handleAvatarSuccess = (response, files) => {
-  haveFile.value = files
-  imageUrl.value = URL.createObjectURL(files[0].raw)
-}
+const handleAvatarSuccess = async (file) => {
+  haveFile.value = file;
+  // imageUrl.value = URL.createObjectURL(file);
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const base64 = e.target.result;
+    let params = {}
+    params.avater = base64;
+    params.name = "";
+    params.type = "1";
+    ElMessage.success("更新成功");
+    updateImgUrl(params);
+    closed();
+    let timer = setTimeout(() => {
+      emit("upUser");
+      clearTimeout(timer);
+    }, 500);
+  };
+  reader.readAsDataURL(file.raw);
+};
 
 const beforeAvatarUpload = (rawFile) => {
-  fileName.value = rawFile.name
+  fileName.value = rawFile.name;
   if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('文件大小超过2MB限制!')
-    return false
+    ElMessage.error("文件大小超过2MB限制!");
+    return false;
   }
-  return true
-}
+  return true;
+};
 
-const appVersion = ref('0.0.0')
+const appVersion = ref("0.0.0");
+const getUserAvater = () => {
+  let userInfo = localStorage.getItem("userInfo");
 
-const getUsers = () => {
-  getUser({}).then(res => {
-    if (res && res.avater) {
-      imageUrl.value = res.avater || ''
-      userName.value = res.name || ''
-    }
-  })
-}
+  if (userInfo) {
+    userInfo = JSON.parse(userInfo);
+  }
+  if (userInfo.value) {
+    let users = JSON.parse(userInfo.value);
+    imageUrl.value = users.avater;
+  }
+};
 
 onMounted(async () => {
-  appVersion.value = await getVersion()
-  await getUsers();
-})
+  await getUserAvater();
+  appVersion.value = await getVersion();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -254,7 +303,7 @@ onMounted(async () => {
   }
 
   &::before {
-    content: '';
+    content: "";
     height: 6px;
     width: 6px;
     border-radius: 6px;
@@ -494,7 +543,8 @@ onMounted(async () => {
     }
   }
 
-  .tils {}
+  .tils {
+  }
 }
 
 .names {
